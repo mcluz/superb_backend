@@ -1,0 +1,46 @@
+version: '3.7'
+
+services:
+  mongo:
+    image: mongo:4.2
+    container_name: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    volumes:
+    - mongodata:/data/db
+    ports: 
+    - 27017:27017/tcp
+  rabbitmq:
+    image: rabbitmq:3.9.5-management-alpine
+    ports:
+    - 5672:5672/tcp
+    - 15672:15672/tcp
+    restart: always
+    container_name: rabbitmq
+    volumes:
+    - rabbitmqdata:/var/lib/rabbitmq
+  api:
+    image: api:latest
+    ports:
+    - 4000:4000/tcp
+    restart: always
+    container_name: api
+    build: ./api
+    command: node . http
+    env_file: ./api/.env.dist
+  consumer:
+    image: consumer:latest
+    restart: always
+    container_name: consumer
+    build: ./api
+    command: node . consumer
+    env_file: ./api/.env.dist
+
+
+volumes:
+  mongodata:
+    name: mongodata
+  rabbitmqdata:
+    name: rabbitmqdata

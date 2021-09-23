@@ -1,0 +1,35 @@
+{
+  "name": "sbtest-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:mcluz/sbtest-backend.git",
+  "author": "Mauro Luz <contato@mauroluz.com.br>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@koa/cors": "^3.1.0",
+    "@koa/router": "^10.1.1",
+    "amqplib": "^0.8.0",
+    "body-parser": "^1.19.0",
+    "commander": "^8.2.0",
+    "dotenv": "^10.0.0",
+    "koa": "^2.13.1",
+    "koa-bodyparser": "^4.3.0",
+    "koa-json": "^2.0.2",
+    "koa-json-body": "^5.3.0",
+    "mongoose": "^6.0.6"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.24.2",
+    "mocha": "^9.1.1",
+    "nyc": "^15.1.0"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "test": "nyc mocha tests/*.js"
+  }
+}
